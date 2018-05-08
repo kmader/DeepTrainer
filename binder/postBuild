@@ -1,9 +1,9 @@
 source activate root
 cd binder
 pip install -e.
-jupyter serverextension enable --py nbdlstudioproxy
-jupyter nbextension install --py nbdlstudioproxy
-jupyter nbextension enable --py nbdlstudioproxy
+jupyter serverextension enable --user --py nbdlstudioproxy
+jupyter nbextension install --user --py nbdlstudioproxy
+jupyter nbextension enable --user --py nbdlstudioproxy
 # download datasets and models
 python cache_keras.py
 cd ..
