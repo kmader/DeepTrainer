@@ -1,0 +1,39 @@
+os: linux
+dist: trusty
+sudo: required
+language: generic
+
+env:
+    global:
+        - OMP_NUM_THREADS=1
+        - OPENBLAS_MAIN_FREE=1
+
+cache:
+    apt: true
+
+addons:
+    apt:
+        packages:
+            - build-essential
+            - cmake
+            - cython
+            - git
+
+
+install:
+    - wget http://repo.continuum.io/miniconda/Miniconda3-3.7.3-Linux-x86_64.sh -O miniconda.sh;
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - export PATH="$PATH:$HOME/miniconda/bin"
+    - hash -r
+    - conda config --set always_yes yes --set changeps1 no
+    - conda update -q conda
+    - conda info -a
+    - conda create --yes -q -n test python=3.6 pip pytest
+    - conda env update -n test -f binder/environment.yml -q
+    - source activate test
+    - mkdir -p ~/.config/matplotlib
+    - echo "backend:agg" > ~/.config/matplotlib/matplotlibrc
+
+script:
+    - py.test
+    - nosetests

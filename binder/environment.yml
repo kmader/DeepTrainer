@@ -1,0 +1,23 @@
+name: deeptrainer
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.6
+  - numpy
+  - pandas
+  - matplotlib
+  - nbserverproxy
+  - tensorflow
+  - appmode
+  - pip:
+    - keras
+    - ipywidgets==7.0.1 # for interactive plots
+    - dash
+    - dash-renderer
+    - dash-html-components
+    - dash-core-components
+    - plotly
+    - dash-dangerously-set-inner-html
+    - dash_colorscales
+    - dash-table-experiments
